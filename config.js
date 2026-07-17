@@ -1,5 +1,5 @@
 window.AZC_CONFIG = {
-formspreeEndpoint: "https://formspree.io/f/mnnzokyb",
+formspreeEndpoint: "https://formspree.io/f/mwvgleln",
   destinationEmail: "manojgatibbi506@gmail.com",
   phoneNumber: "+91 9338888550",
   whatsappNumber: "919338888550",
