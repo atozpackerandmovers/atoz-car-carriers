@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+Sitemap: https://www.atozcarcarriers.com/sitemap.xml
