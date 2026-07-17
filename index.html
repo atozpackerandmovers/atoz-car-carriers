@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Professional vehicle transport and car carrier enquiry website for A TO Z Car Carriers."
+    >
+    <title>A TO Z Car Carriers | Professional Vehicle Transport</title>
+    <link rel="preload" href="assets/car-carrier-hero.png" as="image">
+    <link rel="stylesheet" href="styles.css?v=20260717d">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="A TO Z Car Carriers home">
+        <span class="brand-mark">AZ</span>
+        <span>
+          <strong>A TO Z Car Carriers</strong>
+          <small>Vehicle transport made simple</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="interstate.html">Inter-State Routes</a>
+        <a href="tracking.html">Tracking</a>
+        <a href="#process">Process</a>
+        <a href="#quote">Quote</a>
+        <a href="#contact">Contact</a>
+        <a href="odisha.html">Odisha Pages</a>
+      </nav>
+      <a class="header-cta" href="tel:+919338888550">Call +91 9338888550</a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Professional car carrier enquiries</p>
+          <h1>Bhubaneswar's specialist car carrier network for Odisha and interstate routes.</h1>
+          <p class="hero-text">
+            A TO Z Car Carriers helps customers request fast, organized transport quotes for cars,
+            SUVs, premium vehicles, dealer transfers, Odisha districts and interstate routes.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#quote">Request a quote <span aria-hidden="true">-&gt;</span></a>
+            <a class="button secondary" href="tel:+919338888550">Call +91 9338888550</a>
+          </div>
+          <dl class="trust-strip" aria-label="Service highlights">
+            <div>
+              <dt>Quote-first</dt>
+              <dd>Clear enquiry records with unique IDs</dd>
+            </div>
+            <div>
+              <dt>Route-ready</dt>
+              <dd>Built for city, route, and campaign pages</dd>
+            </div>
+            <div>
+              <dt>Tracked</dt>
+              <dd>UTM, referrer, device, and time capture</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="quote-panel" id="quote" aria-label="Quick quote form">
+          <div class="panel-heading">
+            <p class="eyebrow">Quick quote</p>
+            <h2>Tell us what you need moved</h2>
+          </div>
+          <form class="quote-form public-enquiry-form" id="quoteForm">
+            <div class="field-group two">
+              <label>
+                Full name
+                <input name="name" autocomplete="name" required>
+              </label>
+              <label>
+                Phone
+                <input name="phone" autocomplete="tel" inputmode="tel" required>
+              </label>
+            </div>
+            <label>
+              WhatsApp number
+              <input name="whatsappNumber" autocomplete="tel" inputmode="tel" placeholder="Same as mobile if applicable">
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <div class="field-group two">
+              <label>
+                Pickup city
+                <input name="pickupCity" required>
+              </label>
+              <label>
+                Delivery city
+                <input name="deliveryCity" required>
+              </label>
+            </div>
+            <div class="field-group two">
+              <label>
+                Vehicle category
+                <select name="vehicleCategory" required>
+                  <option value="">Select category</option>
+                  <option>Hatchback</option>
+                  <option>Sedan</option>
+                  <option>SUV</option>
+                  <option>MUV / MPV</option>
+                  <option>Luxury / premium vehicle</option>
+                  <option>Sports car</option>
+                  <option>Electric vehicle</option>
+                  <option>Two-wheeler</option>
+                  <option>Commercial vehicle</option>
+                  <option>Dealer or fleet vehicle</option>
+                </select>
+              </label>
+              <label>
+                Vehicle name / model
+                <input name="vehicleName" list="vehicleSuggestions" placeholder="Example: Honda City, Scorpio, Creta" required>
+              </label>
+            </div>
+            <datalist id="vehicleSuggestions">
+              <option value="Honda City">
+              <option value="Hyundai Creta">
+              <option value="Mahindra Scorpio">
+              <option value="Maruti Swift">
+              <option value="Toyota Innova">
+              <option value="Tata Nexon EV">
+            </datalist>
+            <div class="field-group two">
+              <label>
+                Preferred timing
+                <select name="timing" required>
+                  <option value="">Select timing</option>
+                  <option>As soon as possible</option>
+                  <option>This week</option>
+                  <option>This month</option>
+                  <option>Planning ahead</option>
+                </select>
+              </label>
+              <label>
+                Pickup date
+                <input type="date" name="pickupDate">
+              </label>
+            </div>
+            <label>
+              Notes
+              <textarea name="message" rows="4" placeholder="Vehicle model, route details, pickup constraints, or callback preference"></textarea>
+            </label>
+            <input type="hidden" name="formType" value="Homepage Quick Quote / Get Free Quote">
+            <input type="hidden" name="enquiryId">
+            <input type="hidden" name="submissionTime">
+            <input type="hidden" name="utmSource">
+            <input type="hidden" name="utmMedium">
+            <input type="hidden" name="utmCampaign">
+            <input type="hidden" name="utmTerm">
+            <input type="hidden" name="utmContent">
+            <input type="hidden" name="gclid">
+            <input type="hidden" name="referrer">
+            <input type="hidden" name="device">
+            <button class="button primary form-submit" type="submit">Submit enquiry <span aria-hidden="true">-&gt;</span></button>
+            <p class="form-note" id="formStatus" role="status" aria-live="polite">
+              Enquiries are prepared for secure Formspree delivery.
+            </p>
+          </form>
+        </aside>
+      </section>
+
+      <section class="thank-you" id="thank-you" hidden>
+        <div>
+          <p class="eyebrow">Enquiry received</p>
+          <h2>Thank you for contacting A TO Z Car Carriers.</h2>
+          <p>Your enquiry has been received successfully. Our team will contact you shortly.</p>
+        </div>
+        <div class="enquiry-badge">
+          <span>Enquiry ID</span>
+          <strong id="enquiryIdDisplay">AZC-000000</strong>
+        </div>
+      </section>
+
+      <section class="section intro-band">
+        <div>
+          <p class="eyebrow">What we handle</p>
+          <h2>Vehicle movement support for private owners, dealers, and campaign traffic.</h2>
+        </div>
+        <p>
+          The site is structured for high-intent quote requests: homepage quick quotes, full quote
+          flows, route pages, Google Ads landing pages, callback requests, and contact enquiries.
+        </p>
+      </section>
+
+      <section class="section services" id="services">
+        <div class="section-heading">
+          <p class="eyebrow">Services</p>
+          <h2>Built around practical transport needs</h2>
+        </div>
+        <div class="service-grid">
+          <article>
+            <span class="service-icon">01</span>
+            <h3>Door-to-door enquiries</h3>
+            <p>Capture pickup, delivery, timing, contact, and vehicle details in one clean request.</p>
+          </article>
+          <article>
+            <span class="service-icon">02</span>
+            <h3>Route-based transport</h3>
+            <p>Support city-to-city, interstate, and recurring route quote requests with campaign data attached.</p>
+          </article>
+          <article>
+            <span class="service-icon">03</span>
+            <h3>Dealer and fleet moves</h3>
+            <p>Organize enquiries for single vehicles, multiple units, dealer transfers, and priority callbacks.</p>
+          </article>
+          <article>
+            <span class="service-icon">04</span>
+            <h3>Premium vehicle handling</h3>
+            <p>Collect transport notes for luxury, specialty, and careful-handling vehicle requirements.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="process section" id="process">
+        <div class="section-heading">
+          <p class="eyebrow">Process</p>
+          <h2>A simple path from request to callback</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span>1</span>
+            <strong>Send the enquiry</strong>
+            <p>Customer details, route, timing, UTM data, referrer, device, and submission time are captured.</p>
+          </li>
+          <li>
+            <span>2</span>
+            <strong>Receive an ID</strong>
+            <p>The page generates a unique enquiry ID for easy follow-up and support tracking.</p>
+          </li>
+          <li>
+            <span>3</span>
+            <strong>Team review</strong>
+            <p>The request is prepared for Formspree delivery and a fast callback from the operations team.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section route-band">
+        <div>
+          <p class="eyebrow">Campaign ready</p>
+          <h2>Built for Bhubaneswar launch, 30 Odisha districts and priority interstate routes.</h2>
+        </div>
+        <div class="hero-actions route-actions">
+          <a class="button secondary dark" href="interstate.html">View interstate routes</a>
+          <a class="button secondary dark" href="pricing.html">Pricing logic</a>
+        </div>
+      </section>
+
+      <section class="section strategy-grid-section">
+        <div class="section-heading">
+          <p class="eyebrow">Instant estimate</p>
+          <h2>Give customers price logic before the callback</h2>
+          <p>
+            This calculator gives a simple indicative range based on distance band, vehicle size,
+            carrier type and pickup option. Final quote is confirmed after route and vehicle checks.
+          </p>
+        </div>
+        <div class="estimate-panel">
+          <form class="estimate-form" id="estimateForm">
+            <div class="field-group two">
+              <label>
+                Distance band
+                <select id="estimateDistance">
+                  <option value="local">Bhubaneswar / Cuttack / Puri local</option>
+                  <option value="district">Odisha district route</option>
+                  <option value="nearstate">Neighbouring state route</option>
+                  <option value="metro">Long-haul metro route</option>
+                </select>
+              </label>
+              <label>
+                Vehicle size
+                <select id="estimateVehicle">
+                  <option value="small">Hatchback / two-wheeler</option>
+                  <option value="sedan">Sedan</option>
+                  <option value="suv">SUV / MUV</option>
+                  <option value="premium">Premium / luxury</option>
+                </select>
+              </label>
+            </div>
+            <div class="field-group two">
+              <label>
+                Carrier type
+                <select id="estimateCarrier">
+                  <option value="open">Open carrier</option>
+                  <option value="enclosed">Enclosed carrier</option>
+                </select>
+              </label>
+              <label>
+                Pickup option
+                <select id="estimatePickup">
+                  <option value="standard">Standard pickup</option>
+                  <option value="door">Door-to-door pickup</option>
+                  <option value="urgent">Urgent pickup</option>
+                </select>
+              </label>
+            </div>
+            <button class="button primary" type="button" id="estimateButton">Show indicative range</button>
+          </form>
+          <div class="estimate-result" id="estimateResult">
+            Select options to see an indicative quote band.
+          </div>
+        </div>
+      </section>
+
+      <section class="section trust-pages">
+        <div class="section-heading">
+          <p class="eyebrow">Trust pages</p>
+          <h2>Explain pricing, tracking, insurance and claims clearly</h2>
+        </div>
+        <div class="service-grid">
+          <article>
+            <span class="service-icon">RS</span>
+            <h3>Pricing</h3>
+            <p>Distance band, vehicle size, carrier type, pickup option, urgency and insurance affect the final quote.</p>
+            <a class="text-link" href="pricing.html">View pricing page</a>
+          </article>
+          <article>
+            <span class="service-icon">ID</span>
+            <h3>Tracking</h3>
+            <p>Use enquiry ID and WhatsApp-first support for pickup, transit and delivery updates.</p>
+            <a class="text-link" href="tracking.html">View tracking page</a>
+          </article>
+          <article>
+            <span class="service-icon">IN</span>
+            <h3>Insurance and claims</h3>
+            <p>Give customers a pickup photo checklist, RC details guidance and delivery inspection process.</p>
+            <a class="text-link" href="insurance.html">View insurance page</a>
+          </article>
+          <article>
+            <span class="service-icon">GST</span>
+            <h3>Corporate and government transfers</h3>
+            <p>Clear documentation and invoice-ready enquiry records for transfer and reimbursement-sensitive customers.</p>
+            <a class="text-link" href="#quote">Request quote</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section odisha-pages" id="odisha-pages">
+        <div class="section-heading">
+          <p class="eyebrow">Odisha service areas</p>
+          <h2>District-wise landing pages for Google Ads</h2>
+          <p>
+            Customers can open their own district page and understand what vehicle carrier
+            service is available before sending an enquiry.
+          </p>
+        </div>
+        <div class="district-link-grid">
+          <a href="odisha/angul.html"><strong>Angul</strong><span>District service page</span></a>
+          <a href="odisha/balangir.html"><strong>Balangir</strong><span>District service page</span></a>
+          <a href="odisha/balasore.html"><strong>Balasore</strong><span>District service page</span></a>
+          <a href="odisha/bargarh.html"><strong>Bargarh</strong><span>District service page</span></a>
+          <a href="odisha/bhadrak.html"><strong>Bhadrak</strong><span>District service page</span></a>
+          <a href="odisha/boudh.html"><strong>Boudh</strong><span>District service page</span></a>
+          <a href="odisha/cuttack.html"><strong>Cuttack</strong><span>District service page</span></a>
+          <a href="odisha/deogarh.html"><strong>Deogarh</strong><span>District service page</span></a>
+          <a href="odisha/dhenkanal.html"><strong>Dhenkanal</strong><span>District service page</span></a>
+          <a href="odisha/gajapati.html"><strong>Gajapati</strong><span>District service page</span></a>
+          <a href="odisha/ganjam.html"><strong>Ganjam</strong><span>Berhampur service page</span></a>
+          <a href="odisha/jagatsinghpur.html"><strong>Jagatsinghpur</strong><span>District service page</span></a>
+          <a href="odisha/jajpur.html"><strong>Jajpur</strong><span>District service page</span></a>
+          <a href="odisha/jharsuguda.html"><strong>Jharsuguda</strong><span>District service page</span></a>
+          <a href="odisha/kalahandi.html"><strong>Kalahandi</strong><span>District service page</span></a>
+          <a href="odisha/kandhamal.html"><strong>Kandhamal</strong><span>District service page</span></a>
+          <a href="odisha/kendrapara.html"><strong>Kendrapara</strong><span>District service page</span></a>
+          <a href="odisha/kendujhar.html"><strong>Kendujhar</strong><span>District service page</span></a>
+          <a href="odisha/khordha.html"><strong>Khordha</strong><span>Bhubaneswar service page</span></a>
+          <a href="odisha/koraput.html"><strong>Koraput</strong><span>District service page</span></a>
+          <a href="odisha/malkangiri.html"><strong>Malkangiri</strong><span>District service page</span></a>
+          <a href="odisha/mayurbhanj.html"><strong>Mayurbhanj</strong><span>District service page</span></a>
+          <a href="odisha/nabarangpur.html"><strong>Nabarangpur</strong><span>District service page</span></a>
+          <a href="odisha/nayagarh.html"><strong>Nayagarh</strong><span>District service page</span></a>
+          <a href="odisha/nuapada.html"><strong>Nuapada</strong><span>District service page</span></a>
+          <a href="odisha/puri.html"><strong>Puri</strong><span>District service page</span></a>
+          <a href="odisha/rayagada.html"><strong>Rayagada</strong><span>District service page</span></a>
+          <a href="odisha/sambalpur.html"><strong>Sambalpur</strong><span>District service page</span></a>
+          <a href="odisha/subarnapur.html"><strong>Subarnapur</strong><span>District service page</span></a>
+          <a href="odisha/sundargarh.html"><strong>Sundargarh</strong><span>Rourkela service page</span></a>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="section-heading">
+          <p class="eyebrow">Contact</p>
+          <h2>Ready for your production enquiry setup</h2>
+        </div>
+        <div class="contact-grid">
+          <article>
+            <h3>Call us</h3>
+            <p><a href="tel:+919338888550">+91 9338888550</a></p>
+          </article>
+          <article>
+            <h3>Email delivery</h3>
+            <p class="contact-link"><a href="mailto:manojgatibbi506@gmail.com">manojgatibbi506@gmail.com</a></p>
+          </article>
+          <article>
+            <h3>Head office</h3>
+            <address>
+              H.O. 211, Deulasahi, Tulsipur,<br>
+              Cuttack - 753008,<br>
+              Odisha, India.
+            </address>
+          </article>
+          <article>
+            <h3>Lead capture</h3>
+            <p>Formspree endpoint placeholder, enquiry ID generation, and campaign field capture are included.</p>
+          </article>
+          <article>
+            <h3>Tracking</h3>
+            <p>Google Analytics 4 and Google Ads conversion hooks fire only after a confirmed delivery response.</p>
+          </article>
+        </div>
+        <div class="secondary-form-grid">
+          <form class="quote-form public-enquiry-form compact-form">
+            <div class="section-heading compact-heading">
+              <p class="eyebrow">Contact Us</p>
+              <h3>Send a contact enquiry</h3>
+            </div>
+            <div class="field-group two">
+              <label>
+                Customer name
+                <input name="name" autocomplete="name" required>
+              </label>
+              <label>
+                Mobile number
+                <input name="phone" autocomplete="tel" inputmode="tel" required>
+              </label>
+            </div>
+            <label>
+              WhatsApp number
+              <input name="whatsappNumber" autocomplete="tel" inputmode="tel" placeholder="Same as mobile if applicable">
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" autocomplete="email">
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="4" placeholder="Tell us your vehicle transport requirement" required></textarea>
+            </label>
+            <input type="hidden" name="formType" value="Contact Us">
+            <input type="hidden" name="pickupCity">
+            <input type="hidden" name="deliveryCity">
+            <input type="hidden" name="vehicleCategory">
+            <input type="hidden" name="vehicleName">
+            <input type="hidden" name="pickupDate">
+            <input type="hidden" name="enquiryId">
+            <input type="hidden" name="submissionTime">
+            <input type="hidden" name="utmSource">
+            <input type="hidden" name="utmMedium">
+            <input type="hidden" name="utmCampaign">
+            <input type="hidden" name="utmTerm">
+            <input type="hidden" name="utmContent">
+            <input type="hidden" name="gclid">
+            <input type="hidden" name="referrer">
+            <input type="hidden" name="device">
+            <button class="button primary form-submit" type="submit">Send contact enquiry</button>
+            <p class="form-note" role="status" aria-live="polite">Enquiries are prepared for secure Formspree delivery.</p>
+          </form>
+
+          <form class="quote-form public-enquiry-form compact-form">
+            <div class="section-heading compact-heading">
+              <p class="eyebrow">Callback Request</p>
+              <h3>Request a callback</h3>
+            </div>
+            <div class="field-group two">
+              <label>
+                Customer name
+                <input name="name" autocomplete="name" required>
+              </label>
+              <label>
+                Mobile number
+                <input name="phone" autocomplete="tel" inputmode="tel" required>
+              </label>
+            </div>
+            <label>
+              WhatsApp number
+              <input name="whatsappNumber" autocomplete="tel" inputmode="tel" placeholder="Same as mobile if applicable">
+            </label>
+            <div class="field-group two">
+              <label>
+                Pickup city
+                <input name="pickupCity">
+              </label>
+              <label>
+                Delivery city
+                <input name="deliveryCity">
+              </label>
+            </div>
+            <label>
+              Message
+              <textarea name="message" rows="4" placeholder="Preferred callback time and vehicle details"></textarea>
+            </label>
+            <input type="hidden" name="formType" value="Callback Request">
+            <input type="hidden" name="email">
+            <input type="hidden" name="vehicleCategory">
+            <input type="hidden" name="vehicleName">
+            <input type="hidden" name="pickupDate">
+            <input type="hidden" name="enquiryId">
+            <input type="hidden" name="submissionTime">
+            <input type="hidden" name="utmSource">
+            <input type="hidden" name="utmMedium">
+            <input type="hidden" name="utmCampaign">
+            <input type="hidden" name="utmTerm">
+            <input type="hidden" name="utmContent">
+            <input type="hidden" name="gclid">
+            <input type="hidden" name="referrer">
+            <input type="hidden" name="device">
+            <button class="button primary form-submit" type="submit">Request callback</button>
+            <p class="form-note" role="status" aria-live="polite">Enquiries are prepared for secure Formspree delivery.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>A TO Z Car Carriers</p>
+      <p><a href="tel:+919338888550">+91 9338888550</a> | H.O. 211, Deulasahi, Tulsipur, Cuttack - 753008</p>
+    </footer>
+
+    <script src="config.js?v=20260717c"></script>
+    <script src="app.js?v=20260717c"></script>
+  </body>
+</html>
