@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta
+      name="description"
+      content="Thank you page for A TO Z Car Carriers vehicle transport enquiries."
+    >
+    <title>Thank You | A TO Z Car Carriers</title>
+    <link rel="stylesheet" href="styles.css?v=20260718c">
+  </head>
+  <body class="thanks-page">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="A TO Z Car Carriers home">
+        <span class="brand-mark">AZ</span>
+        <span>
+          <strong>A TO Z Car Carriers</strong>
+          <small>Vehicle transport made simple</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#quote">Quote</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="header-cta" href="tel:+919338888550">Call +91 9338888550</a>
+    </header>
+
+    <main class="thanks-hero">
+      <section class="thanks-card">
+        <p class="eyebrow">Enquiry received</p>
+        <h1>Thank you for contacting A TO Z Car Carriers.</h1>
+        <p>Your enquiry has been received successfully.</p><p>Our team will review your route and vehicle details and contact you shortly. For urgent help, call <a href="tel:+919338888550">+91 9338888550</a>.</p>
+        <div class="enquiry-badge light">
+          <span>Enquiry ID</span>
+          <strong id="thanksEnquiryId">AZC-000000</strong>
+        </div>
+        <div class="hero-actions">
+          <a class="button primary" href="index.html#quote">Submit another enquiry</a>
+          <a class="button secondary dark-text" href="tel:+919338888550">Call team</a>
+        </div>
+        <address class="thanks-address">
+          H.O. 211, Deulasahi, Tulsipur, Cuttack - 753008, Odisha, India.
+        </address>
+      </section>
+    </main>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const stored = JSON.parse(sessionStorage.getItem("azc_last_enquiry") || "{}");
+      const id = params.get("id") || stored.enquiryId || "AZC-000000";
+      document.querySelector("#thanksEnquiryId").textContent = id;
+    </script>
+    <script src="config.js?v=20260718c"></script>
+    <script src="app.js?v=20260718c"></script>
+  </body>
+</html>
