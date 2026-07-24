@@ -36,12 +36,19 @@ function installMobileStickyBar() {
     "Hello A TO Z Car Carriers, I need a car transport quotation."
   );
   const bar = document.createElement("nav");
+  const localQuoteTarget = document.querySelector("#district-quote")
+    ? "#district-quote"
+    : document.querySelector("#route-quote")
+      ? "#route-quote"
+      : document.querySelector("#quote")
+        ? "#quote"
+        : "index.html#quote";
   bar.className = "mobile-sticky-bar";
   bar.setAttribute("aria-label", "Mobile quick actions");
   bar.innerHTML = `
     <a href="tel:${phoneNumber}">Call Now</a>
     <a href="https://wa.me/${whatsappNumber}?text=${message}" target="_blank" rel="noopener">WhatsApp</a>
-    <a href="#quote">Get Quote</a>
+    <a href="${localQuoteTarget}" data-track-action="get_quote">Get Quote</a>
   `;
   document.body.appendChild(bar);
 }
@@ -74,23 +81,63 @@ function animateHeaderPhone() {
 
 animateHeaderPhone();
 
+function sendAnalyticsEvent(eventName, details = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+
+  window.gtag("event", eventName, {
+    send_to: config.googleAnalyticsId,
+    page_path: window.location.pathname,
+    ...details
+  });
+}
+
 function trackContactClicks() {
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
-    if (!link || typeof window.gtag !== "function") return;
+    if (!link) return;
 
     const href = link.getAttribute("href") || "";
     if (href.startsWith("tel:")) {
-      window.gtag("event", "phone_call_click", {
-        event_category: "Contact",
-        event_label: href.replace("tel:", "")
+      sendAnalyticsEvent("phone_click", {
+        link_location: link.closest("header")
+          ? "header"
+          : link.closest(".mobile-sticky-bar")
+            ? "mobile_sticky_bar"
+            : "page_content"
       });
     }
 
     if (href.includes("wa.me/") || href.includes("api.whatsapp.com")) {
-      window.gtag("event", "whatsapp_click", {
-        event_category: "Contact",
-        event_label: "WhatsApp enquiry"
+      sendAnalyticsEvent("whatsapp_click", {
+        link_location: link.closest(".mobile-sticky-bar")
+          ? "mobile_sticky_bar"
+          : link.closest(".floating-actions")
+            ? "floating_button"
+            : "page_content"
+      });
+    }
+
+    if (
+      link.dataset.trackAction === "get_quote" ||
+      /#(?:quote|district-quote|route-quote)$/.test(href)
+    ) {
+      sendAnalyticsEvent("get_quote_click", {
+        link_location: link.closest(".mobile-sticky-bar")
+          ? "mobile_sticky_bar"
+          : "page_content"
+      });
+    }
+
+    if (
+      href === "#contact" ||
+      href.endsWith("index.html#contact") ||
+      /(?:^|\/)contact-us\.html(?:[?#].*)?$/.test(href)
+    ) {
+      sendAnalyticsEvent("contact_click", {
+        link_location: link.closest("header") ? "header" : "page_content"
       });
     }
   });
@@ -116,7 +163,15 @@ function makeEnquiryId() {
 
 function getCampaignFields() {
   const params = new URLSearchParams(window.location.search);
-  return {
+  const storageKey = "azc_campaign_attribution";
+  let saved = {};
+  try {
+    saved = JSON.parse(sessionStorage.getItem(storageKey) || "{}");
+  } catch {
+    saved = {};
+  }
+
+  const current = {
     utmSource: params.get("utm_source") || "",
     utmMedium: params.get("utm_medium") || "",
     utmCampaign: params.get("utm_campaign") || "",
@@ -127,6 +182,25 @@ function getCampaignFields() {
     device: getDeviceType(),
     submissionTime: new Date().toISOString()
   };
+
+  const attribution = {
+    utmSource: current.utmSource || saved.utmSource || "",
+    utmMedium: current.utmMedium || saved.utmMedium || "",
+    utmCampaign: current.utmCampaign || saved.utmCampaign || "",
+    utmTerm: current.utmTerm || saved.utmTerm || "",
+    utmContent: current.utmContent || saved.utmContent || "",
+    gclid: current.gclid || saved.gclid || ""
+  };
+
+  if (Object.values(attribution).some(Boolean)) {
+    try {
+      sessionStorage.setItem(storageKey, JSON.stringify(attribution));
+    } catch {
+      // Attribution persistence is optional; form submission must still work.
+    }
+  }
+
+  return { ...current, ...attribution };
 }
 
 function setFormFields(form, values) {
@@ -145,13 +219,6 @@ function addOrUpdateHiddenField(form, name, value) {
     form.appendChild(field);
   }
   field.value = value;
-}
-
-function saveLocalRecord(record) {
-  const key = "azc_enquiries";
-  const existing = JSON.parse(localStorage.getItem(key) || "[]");
-  existing.push(record);
-  localStorage.setItem(key, JSON.stringify(existing.slice(-100)));
 }
 
 async function saveToFirestore(record) {
@@ -173,28 +240,45 @@ async function saveToFirestore(record) {
   return { saved: true };
 }
 
-function fireConversionEvents(enquiryId) {
-  if (typeof window.gtag !== "function") return;
+function fireLeadAnalyticsOnce(form, enquiryId, onComplete) {
+  const formName = form.id || form.elements.namedItem("formType")?.value || "lead_form";
+  const dedupeKey = `azc_lead_fired:${enquiryId}`;
 
-  window.gtag("event", "generate_lead", {
-    event_category: "Lead",
-    event_label: "A TO Z Car Carriers",
-    enquiry_id: enquiryId
+  if (sessionStorage.getItem(dedupeKey) === "true") {
+    onComplete();
+    return;
+  }
+
+  sessionStorage.setItem(dedupeKey, "true");
+  let completed = false;
+  const finish = () => {
+    if (completed) return;
+    completed = true;
+    onComplete();
+  };
+
+  sendAnalyticsEvent("lead_submitted", {
+    form_name: formName,
+    event_callback: finish,
+    event_timeout: 2000,
+    transport_type: "beacon"
   });
 
-  if (config.googleAdsConversionSendTo) {
-    window.gtag("event", "conversion", {
-      send_to: config.googleAdsConversionSendTo,
-      enquiry_id: enquiryId
-    });
-  }
+  window.setTimeout(finish, 2200);
 }
 
 function showThankYou(enquiryId, deliveryStatus) {
+  const successRecord = {
+    enquiryId,
+    deliveryStatus,
+    time: new Date().toISOString()
+  };
+
   sessionStorage.setItem(
     "azc_last_enquiry",
-    JSON.stringify({ enquiryId, deliveryStatus, time: new Date().toISOString() })
+    JSON.stringify(successRecord)
   );
+  sessionStorage.setItem("azc_conversion_token", JSON.stringify(successRecord));
 
   const thankYouPath = window.location.pathname.includes("/odisha/") || window.location.pathname.includes("/routes/")
     ? "../thank-you.html"
@@ -294,6 +378,8 @@ async function handleFormSubmit(event) {
   const pickupField = form.elements.namedItem("pickupCity");
   const deliveryField = form.elements.namedItem("deliveryCity");
 
+  if (form.dataset.submitting === "true") return;
+
   if (phoneField) {
     const digits = phoneField.value.replace(/\D/g, "");
     if (digits.length !== 10) {
@@ -331,9 +417,11 @@ async function handleFormSubmit(event) {
   prepareNativeFormFallback(form, enquiryId);
 
   if (submitButton) {
+    submitButton.dataset.defaultText ||= submitButton.textContent.trim();
     submitButton.disabled = true;
     submitButton.textContent = "Submitting...";
   }
+  form.dataset.submitting = "true";
   if (statusEl) {
     statusEl.classList.remove("form-error");
     statusEl.textContent = "Submitting your enquiry...";
@@ -366,20 +454,23 @@ async function handleFormSubmit(event) {
     record.firestoreError = error.message;
   }
 
-  saveLocalRecord(record);
-
   if (formspreeResult.delivered) {
-    fireConversionEvents(enquiryId);
-    showThankYou(enquiryId, deliveryStatus);
+    fireLeadAnalyticsOnce(form, enquiryId, () => {
+      showThankYou(enquiryId, deliveryStatus);
+    });
     return;
   }
 
+  form.dataset.submitting = "false";
+  if (submitButton) {
+    submitButton.disabled = false;
+    submitButton.textContent = submitButton.dataset.defaultText || "Submit Enquiry";
+  }
   if (statusEl) {
     statusEl.textContent =
-      `We are sending your enquiry securely. Enquiry ID: ${enquiryId}`;
+      `Your enquiry could not be sent. Please check your connection and try again, or call +91 9338888550. Enquiry ID: ${enquiryId}`;
     statusEl.classList.add("form-error");
   }
-  setTimeout(() => form.submit(), 400);
 }
 
 document
@@ -428,19 +519,4 @@ estimateButton?.addEventListener("click", () => {
   if (result) {
     result.innerHTML = `Rs ${low.toLocaleString("en-IN")} - Rs ${high.toLocaleString("en-IN")}<small>The displayed estimate is indicative only. Final quotation depends on exact pickup and delivery locations, vehicle model, vehicle condition, route availability, carrier type, seasonal demand, insurance requirement and additional service requirements.</small>`;
   }
-});
-
-document.querySelector("#trackingButton")?.addEventListener("click", () => {
-  const id = document.querySelector("#trackingId")?.value.trim();
-  const status = document.querySelector("#trackingStatus");
-  if (!status) return;
-
-  if (!id) {
-    status.textContent = "Please enter your enquiry or consignment ID.";
-    status.classList.add("form-error");
-    return;
-  }
-
-  status.classList.remove("form-error");
-  status.textContent = `Tracking request noted for ${id}. For live status, call or WhatsApp +91 9338888550.`;
 });
