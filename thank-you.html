@@ -2,17 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+      Load the existing GTM container only after a recent, confirmed Formspree
+      success. The token is consumed before loading GTM so direct visits and
+      refreshes cannot trigger the page-based Google Ads conversion again.
+    -->
+    <script>
+      (function loadVerifiedConversionContainer(w, d) {
+        try {
+          const params = new URLSearchParams(w.location.search);
+          const tokenKey = "azc_conversion_token";
+          const token = JSON.parse(w.sessionStorage.getItem(tokenKey) || "{}");
+          const tokenTime = Date.parse(token.time || "");
+          const isRecent = Number.isFinite(tokenTime) && Date.now() - tokenTime < 300000;
+          const isValid =
+            token.deliveryStatus === "formspree_delivered" &&
+            token.enquiryId &&
+            token.enquiryId === params.get("id") &&
+            isRecent;
+
+          if (!isValid) return;
+          w.sessionStorage.removeItem(tokenKey);
+          w.dataLayer = w.dataLayer || [];
+          w.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+          const firstScript = d.getElementsByTagName("script")[0];
+          const script = d.createElement("script");
+          script.async = true;
+          script.src = "https://www.googletagmanager.com/gtm.js?id=GTM-52Z7X39B";
+          firstScript.parentNode.insertBefore(script, firstScript);
+        } catch {
+          // Do not load conversion tracking if the verified token is unavailable.
+        }
+      })(window, document);
+    </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
     <meta
       name="description"
       content="Thank you page for A TO Z Car Carriers vehicle transport enquiries."
     >
     <title>Thank You | A TO Z Car Carriers</title>
-    <link rel="stylesheet" href="styles.css?v=20260718c">
+    <link rel="stylesheet" href="styles.css?v=20260724e">
   </head>
   <body class="thanks-page">
-    <header class="site-header">
+<header class="site-header">
       <a class="brand" href="index.html" aria-label="A TO Z Car Carriers home">
         <span class="brand-mark">AZ</span>
         <span>
@@ -54,7 +87,7 @@
       const id = params.get("id") || stored.enquiryId || "AZC-000000";
       document.querySelector("#thanksEnquiryId").textContent = id;
     </script>
-    <script src="config.js?v=20260718c"></script>
-    <script src="app.js?v=20260718c"></script>
+    <script src="config.js?v=20260724e"></script>
+    <script src="app.js?v=20260724e"></script>
   </body>
 </html>
