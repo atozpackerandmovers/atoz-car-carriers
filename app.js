@@ -56,23 +56,21 @@ function installMobileStickyBar() {
 installMobileStickyBar();
 
 function animateHeaderPhone() {
+  const displayNumber = "9338888550";
+
   document.querySelectorAll(".header-cta").forEach((link) => {
     if (link.dataset.phoneAnimated === "true") return;
 
-    const text = link.textContent.trim();
     link.dataset.phoneAnimated = "true";
-    link.setAttribute("aria-label", text);
+    link.setAttribute("aria-label", `Call ${displayNumber}`);
+    link.setAttribute("title", `Call ${displayNumber}`);
     link.textContent = "";
 
-    Array.from(text).forEach((char, index) => {
+    Array.from(displayNumber).forEach((char, index) => {
       const span = document.createElement("span");
-      const classes = ["phone-letter"];
-      if (char === " ") classes.push("phone-space");
-      if (/\d/.test(char)) classes.push("phone-digit");
-      if (char === "+") classes.push("phone-plus");
-      span.className = classes.join(" ");
+      span.className = "phone-letter phone-digit";
       span.style.setProperty("--i", index);
-      span.textContent = char === " " ? "\u00a0" : char;
+      span.textContent = char;
       span.setAttribute("aria-hidden", "true");
       link.appendChild(span);
     });
