@@ -113,18 +113,23 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  padding: 11px 16px;
+  gap: 0.12em;
+  min-width: clamp(230px, 18vw, 290px);
+  min-height: 54px;
+  padding: 13px 22px;
   color: #fff;
-  background: linear-gradient(135deg, #111820 0%, #25313a 46%, #9f2220 100%);
-  border-radius: 8px;
-  font-size: 14px;
+  background: linear-gradient(110deg, #0d151d 0%, #26323b 32%, #741f25 67%, #bd2f2a 100%);
+  background-size: 220% 100%;
+  border-radius: 12px;
+  font-size: clamp(20px, 1.65vw, 26px);
   font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.015em;
   white-space: nowrap;
   overflow: hidden;
-  border: 1px solid rgba(244, 184, 63, 0.46);
-  box-shadow: 0 10px 24px rgba(201, 48, 44, 0.24), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-  animation: phoneButtonFocus 2.45s ease-in-out infinite;
+  border: 2px solid rgba(255, 199, 71, 0.88);
+  box-shadow: 0 12px 30px rgba(201, 48, 44, 0.34), 0 0 18px rgba(244, 184, 63, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  animation: phoneButtonFocus 2.2s ease-in-out infinite, phoneBackgroundFlow 5.5s linear infinite;
 }
 
 .header-cta::before {
@@ -140,26 +145,28 @@ img {
 .header-cta::after {
   content: "";
   position: absolute;
-  inset: 4px;
+  inset: 5px;
   z-index: -1;
-  border: 1px solid rgba(244, 184, 63, 0.42);
-  border-radius: 6px;
+  border: 1px solid rgba(255, 214, 112, 0.62);
+  border-radius: 8px;
   opacity: 0.7;
   animation: phoneInnerPulse 2.45s ease-in-out infinite;
 }
 
 .phone-letter {
   display: inline-block;
+  min-width: 0.62em;
+  text-align: center;
   transform-origin: 50% 80%;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-.phone-digit,
-.phone-plus {
+.phone-digit {
   color: #fff8d6;
-  text-shadow: 0 0 8px rgba(244, 184, 63, 0.55), 0 1px 0 rgba(0, 0, 0, 0.26);
-  animation: phoneDigitDance 1.45s cubic-bezier(0.33, 1, 0.68, 1) infinite;
-  animation-delay: calc(var(--i) * 0.075s);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 10px rgba(255, 203, 75, 0.75), 0 2px 1px rgba(0, 0, 0, 0.35);
+  animation: phoneDigitDance 1.8s cubic-bezier(0.33, 1, 0.68, 1) infinite;
+  animation-delay: calc(var(--i) * 0.11s);
 }
 
 .phone-space {
@@ -465,9 +472,43 @@ textarea:focus {
   background: var(--soft);
 }
 
-.intro-band p:last-child {
+.about-copy > p {
   color: var(--muted);
   font-size: 19px;
+}
+
+.business-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 22px;
+  margin: 24px 0 0;
+}
+
+.business-details div {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.business-details dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.business-details dd {
+  margin: 4px 0 0;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.business-details a {
+  color: var(--red-dark);
+}
+
+.content-business-details {
+  margin-bottom: 34px;
 }
 
 .section-heading {
@@ -998,8 +1039,8 @@ address {
 }
 
 .footer {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(170px, 0.7fr) minmax(300px, 1.5fr) minmax(230px, 1fr);
   gap: 20px;
   padding: 24px clamp(20px, 4vw, 64px);
   color: rgba(255, 255, 255, 0.72);
@@ -1014,6 +1055,17 @@ address {
 .footer a {
   color: #fff;
   font-weight: 900;
+}
+
+.footer-disclosure {
+  grid-column: 1 / -1;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  line-height: 1.65;
+}
+
+.footer-disclosure strong {
+  color: #fff;
 }
 
 .thanks-card a {
@@ -1160,8 +1212,17 @@ address {
     transform: translateY(0) scale(1);
   }
   42% {
-    box-shadow: 0 14px 30px rgba(201, 48, 44, 0.38), 0 0 20px rgba(244, 184, 63, 0.24), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-    transform: translateY(-1px) scale(1.025);
+    box-shadow: 0 16px 36px rgba(201, 48, 44, 0.48), 0 0 28px rgba(244, 184, 63, 0.38), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px) scale(1.03);
+  }
+}
+
+@keyframes phoneBackgroundFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 220% 50%;
   }
 }
 
@@ -1192,27 +1253,23 @@ address {
   0%,
   100% {
     color: #fff8d6;
-    scale: 1;
-    translate: 0 0;
-    rotate: 0deg;
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
   }
-  18% {
-    color: #f4b83f;
-    scale: 1.18;
-    translate: 0 -4px;
-    rotate: -4deg;
+  22% {
+    color: #ffd04d;
+    transform: translateY(-5px) scale(1.2);
+    filter: brightness(1.25);
   }
-  34% {
+  42% {
     color: #ffffff;
-    scale: 0.98;
-    translate: 0 2px;
-    rotate: 3deg;
+    transform: translateY(1px) scale(1.02);
+    filter: brightness(1.1);
   }
-  52% {
+  62% {
     color: #ffe9a8;
-    scale: 1.08;
-    translate: 0 -2px;
-    rotate: 0deg;
+    transform: translateY(-2px) scale(1.1);
+    filter: brightness(1.15);
   }
 }
 
@@ -1385,6 +1442,10 @@ address {
     grid-template-columns: 1fr;
   }
 
+  .business-details {
+    grid-template-columns: 1fr;
+  }
+
   .field-group.two {
     grid-template-columns: 1fr;
   }
@@ -1425,7 +1486,12 @@ address {
   }
 
   .footer {
+    grid-template-columns: 1fr;
     padding-bottom: 92px;
+  }
+
+  .footer-disclosure {
+    grid-column: auto;
   }
 }
 
@@ -1456,12 +1522,16 @@ address {
   }
 
   .header-cta {
-    max-width: 126px;
-    padding: 9px 10px;
-    font-size: 12px;
-    line-height: 1.15;
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 60px;
+    padding: 14px 18px;
+    font-size: clamp(23px, 7vw, 30px);
+    line-height: 1;
     text-align: center;
-    white-space: normal;
+    white-space: nowrap;
   }
 
   .hero-copy,
@@ -1515,6 +1585,7 @@ address {
   .header-cta {
     width: 100%;
     max-width: none;
+    font-size: clamp(21px, 7.2vw, 27px);
   }
 
   h1 {
