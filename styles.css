@@ -600,7 +600,12 @@ textarea:focus {
   background: var(--soft);
 }
 
-.video-grid,
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
 .verified-review-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -645,6 +650,11 @@ textarea:focus {
 .verified-review-card p,
 .review-disclaimer {
   color: var(--muted);
+}
+
+.featured-video-card {
+  border-color: rgba(202, 32, 42, 0.28);
+  box-shadow: 0 20px 54px rgba(23, 32, 39, 0.13);
 }
 
 .verified-review-card {
@@ -695,6 +705,12 @@ textarea:focus {
 .review-disclaimer {
   margin: 18px 0 0;
   font-size: 13px;
+}
+
+@media (max-width: 1100px) {
+  .video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 760px) {
