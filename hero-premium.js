@@ -6,6 +6,7 @@
   if (!video || !button) return;
   const hero = video.closest('.hero-cinema');
   const media = video.closest('.hero-cinema-media');
+  const poster = media.querySelector('.hero-cinema-poster');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const connection = navigator.connection;
   let userChoice = null;
@@ -14,9 +15,10 @@
   let videoUnavailable = false;
   let fallbackOnly = false;
   let attemptId = 0;
+  let posterReady = false;
   const wantsMotion = () => userChoice === null ? !reducedMotion.matches : userChoice;
   const shouldMove = () => wantsMotion() && inView && !document.hidden;
-  const useVideo = () => !videoUnavailable && !fallbackOnly && !(connection && connection.saveData);
+  const useVideo = () => posterReady && !videoUnavailable && !fallbackOnly && !(connection && connection.saveData);
   video.muted = true;
   video.defaultMuted = true;
   video.playsInline = true;
@@ -96,6 +98,16 @@
       inView = entries[0].isIntersecting;
       sync();
     }, { threshold: 0.01 }).observe(media);
+  }
+  // Give the high-priority poster a paint before downloading the decorative video.
+  const revealVideo = () => requestAnimationFrame(() => requestAnimationFrame(() => {
+    posterReady = true;
+    sync();
+  }));
+  if (!poster || poster.complete) revealVideo();
+  else {
+    poster.addEventListener('load', revealVideo, { once: true });
+    poster.addEventListener('error', revealVideo, { once: true });
   }
   sync();
 })();

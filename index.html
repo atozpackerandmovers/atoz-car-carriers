@@ -20,10 +20,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <title>A TO Z Car Carriers | Odisha to All India Car Transport</title>
     <link rel="canonical" href="https://atozcarcarriers.com/">
-    <link rel="preload" href="assets/car-carrier-cinematic.webp" as="image" type="image/webp">
+    <link rel="preload" href="assets/car-carrier-cinematic-mobile.webp" as="image" type="image/webp" media="(max-width: 560px)">
+    <link rel="preload" href="assets/car-carrier-cinematic.webp" as="image" type="image/webp" media="(min-width: 561px)">
     <link rel="stylesheet" href="styles.css?v=20260804b">
-    <link rel="stylesheet" href="hero-premium.css?v=20260908b">
-    <script src="hero-premium.js?v=20260908b" defer></script>
+    <link rel="stylesheet" href="hero-premium.css?v=20260908c">
+    <script src="hero-premium.js?v=20260908c" defer></script>
   </head>
   <body>
         <!-- Google Tag Manager (noscript) -->
@@ -54,8 +55,11 @@
       <section class="hero hero-cinema" aria-labelledby="hero-title">
         <div class="hero-cinema-media">
           <div class="hero-cinema-frame">
-          <img class="hero-cinema-poster" src="assets/car-carrier-cinematic.webp" width="1660" height="948" alt="Car transporter carrying cars along a highway at sunset" fetchpriority="high" decoding="async">
-          <video id="heroCinemaVideo" class="hero-cinema-video" autoplay muted loop playsinline preload="none" poster="assets/car-carrier-cinematic.webp" aria-hidden="true" tabindex="-1" data-src="assets/car-carrier-cinematic.mp4"></video>
+          <picture>
+            <source media="(max-width: 560px)" srcset="assets/car-carrier-cinematic-mobile.webp">
+            <img class="hero-cinema-poster" src="assets/car-carrier-cinematic.webp" width="1660" height="948" alt="Car transporter carrying cars along a highway at sunset" fetchpriority="high" decoding="async">
+          </picture>
+          <video id="heroCinemaVideo" class="hero-cinema-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="assets/car-carrier-cinematic.mp4"></video>
           </div>
         </div>
         <button type="button" class="hero-motion-control" id="heroMotionControl" aria-controls="heroCinemaVideo" hidden>Play animation</button>
@@ -74,13 +78,6 @@
       </section>
 
       <section class="hero-booking" aria-label="Car transport quote and service highlights">
-        <div class="hero-booking-intro"><p class="eyebrow">Plan your car transport</p><h2>A smooth start.<br>A carefully planned journey.</h2>
-          <dl class="trust-strip" aria-label="Service highlights">
-            <div><dt>Door pickup</dt><dd>Pickup support from Cuttack, Bhubaneswar, Puri and all Odisha districts</dd></div>
-            <div><dt>Interstate service</dt><dd>Transport to Kolkata, Hyderabad, Chennai, Bengaluru, Delhi and more</dd></div>
-            <div><dt>Insurance assistance</dt><dd>Inspection and transit insurance guidance before dispatch</dd></div>
-          </dl>
-        </div>
           <aside class="quote-panel" id="quote" aria-label="Quick quote form">
           <div class="panel-heading"><p class="eyebrow">Free quote</p><h2>Share your car transport details</h2></div>
                     <form class="quote-form public-enquiry-form">
@@ -112,6 +109,13 @@
             <p class="form-note" role="status" aria-live="polite">Submit your route details. Our team will contact you shortly.</p>
           </form>
           </aside>
+        <div class="hero-booking-intro"><div><p class="eyebrow">Plan your car transport</p><h2>A smooth start.<br>A carefully planned journey.</h2></div>
+          <dl class="trust-strip" aria-label="Service highlights">
+            <div><dt>Door pickup</dt><dd>Pickup support from Cuttack, Bhubaneswar, Puri and all Odisha districts</dd></div>
+            <div><dt>Interstate service</dt><dd>Transport to Kolkata, Hyderabad, Chennai, Bengaluru, Delhi and more</dd></div>
+            <div><dt>Insurance assistance</dt><dd>Inspection and transit insurance guidance before dispatch</dd></div>
+          </dl>
+        </div>
       </section>
 
       <section class="section intro-band" id="about">
