@@ -75,7 +75,12 @@
 
   video.addEventListener('playing', () => {
     if (!shouldMove() || !useVideo()) { video.pause(); return; }
-    video.classList.add('is-ready');
+    // Keep the poster visible until a decoded video frame can replace it.
+    const revealFrame = () => {
+      if (shouldMove() && useVideo() && !video.paused) video.classList.add('is-ready');
+    };
+    if (video.requestVideoFrameCallback) video.requestVideoFrameCallback(revealFrame);
+    else requestAnimationFrame(revealFrame);
     updateControl();
   });
   video.addEventListener('error', () => {

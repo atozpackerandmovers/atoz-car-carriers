@@ -1,0 +1,44 @@
+/* Applied only to quote landing pages. Keep enquiry handlers and fields intact. */
+.quote-landing .district-hero {
+  min-height: 0;
+  padding-top: 36px;
+  padding-bottom: 28px;
+  gap: 24px;
+}
+.quote-landing .district-hero h1 { font-size: clamp(32px, 4vw, 54px); line-height: 1.12; }
+.quote-landing .district-hero p { font-size: 16px; line-height: 1.55; }
+.quote-landing .district-hero .hero-actions { margin: 20px 0 0; }
+.quote-landing .district-form-band {
+  padding: 20px clamp(16px, 4vw, 64px) 28px;
+  gap: 20px;
+  scroll-margin-top: 145px;
+}
+.quote-landing .district-form-band h2 { font-size: clamp(24px, 2.5vw, 34px); }
+.quote-landing .district-form-band input,
+.quote-landing .district-form-band select { font-size: 16px; min-height: 48px; }
+@media (max-width: 1080px) {
+  .quote-landing .district-summary { padding: 12px; }
+  .quote-landing .district-summary strong { font-size: 20px; margin-bottom: 6px; }
+  .quote-landing .district-summary p { font-size: 13px; line-height: 1.4; }
+  .quote-landing .district-form-band { grid-template-columns: 1fr; }
+  .quote-landing .district-form-band > div > p:not(.eyebrow) { margin-bottom: 0; }
+}
+@media (max-width: 780px) {
+  .quote-landing .district-form-band { scroll-margin-top: 12px; }
+  .quote-landing .district-hero { padding: 24px 16px 20px; }
+  .quote-landing .district-hero .hero-actions { display: flex; gap: 8px; }
+  .quote-landing .district-hero .hero-actions .button { width: auto; flex: 1 1 auto; min-height: 48px; padding: 10px; font-size: 13px; }
+  .quote-landing .district-form-band { padding-top: 16px; gap: 12px; }
+  .quote-landing .district-form-band h2 { margin-bottom: 8px; }
+}
+@media (max-width: 560px) {
+  .quote-landing .site-header { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 10px 12px; }
+  .quote-landing .brand { gap: 6px; }
+  .quote-landing .brand strong { font-size: 12px; max-width: 132px; }
+  .quote-landing .brand-mark { width: 30px; height: 30px; flex-basis: 30px; }
+  .quote-landing .header-cta { grid-column: auto; width: auto; min-height: 44px; padding: 8px; font-size: 17px; }
+  .quote-landing .nav { margin: 0 -12px; padding: 0 12px 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
