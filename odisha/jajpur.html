@@ -20,6 +20,18 @@
     <link rel="canonical" href="https://atozcarcarriers.com/odisha/jajpur.html">
     <link rel="stylesheet" href="../styles.css?v=20260802a">
       <link rel="stylesheet" href="../quote-journey.css?v=20260908a">
+    <style>
+      .district-form-band .district-form .form-note { color: #425466; }
+      .district-form-band .district-form .form-note.form-error { color: #b42318; }
+      .optional-quote-details summary { cursor: pointer; color: #172b35; font-size: 14px; font-weight: 700; padding: 8px 0; }
+      .optional-quote-details[open] .field-group { margin-top: 12px; }
+      .district-loading-proof { display: grid; grid-template-columns: minmax(180px, 280px) minmax(0, 1fr); gap: 28px; align-items: center; }
+      .district-loading-proof figure { margin: 0; }
+      .district-loading-proof img { display: block; width: 100%; height: 260px; object-fit: cover; border-radius: 12px; }
+      .district-loading-proof figcaption { margin-top: 8px; font-size: 13px; }
+      .district-loading-proof h2 { font-size: clamp(24px, 3vw, 36px); }
+      @media (max-width: 560px) { .district-loading-proof { grid-template-columns: 1fr; } .district-loading-proof img { height: 280px; } }
+    </style>
   </head>
   <body class="quote-landing">
         <!-- Google Tag Manager (noscript) -->
@@ -47,21 +59,17 @@
       <section class="district-hero">
         <div class="district-hero-copy">
           <p class="eyebrow">Odisha district car carrier service</p>
-          <h1>Car transport service in Jajpur district</h1>
-          <p>
-            Request vehicle pickup, delivery, carrier quote, and callback support for Jajpur
-            and other locations in Jajpur district. A TO Z Car Carriers helps customers
-            submit clear enquiries with route, vehicle, timing, and contact details.
-          </p>
+          <h1>Car Transport from Jajpur Road</h1>
+          <p>Share your pickup location, destination and car model. Our team will confirm availability and provide a quote.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#district-quote">Get Jajpur quote <span aria-hidden="true">-&gt;</span></a>
+            <a class="button primary" href="#district-quote">Get a Car Transport Quote <span aria-hidden="true">-&gt;</span></a>
             <a class="button secondary" href="tel:+919338888550">Call +91 9338888550</a>
           </div>
         </div>
         <aside class="district-summary">
           <span>Service area</span>
-          <strong>Jajpur, Odisha</strong>
-          <p>Pickup and delivery enquiries for cars, SUVs, EVs, two-wheelers, premium vehicles, and dealer movement.</p>
+          <strong>Jajpur Road, Odisha</strong>
+          <p>Pickup and delivery enquiries for Jajpur Road and other locations in Jajpur district. Cars, SUVs, EVs and other vehicle enquiries are welcome.</p>
         </aside>
       </section>
 
@@ -70,61 +78,35 @@
           <p class="eyebrow">Quote request</p>
           <h2>Request a Jajpur vehicle transport quote</h2>
           <p>
-            Submit your vehicle name, category, pickup city, delivery city, and preferred timing.
+            Start with five details: name, phone, pickup location, destination and car model.
             You will receive a unique enquiry ID after submission.
           </p>
         </div>
         <form class="quote-form district-form public-enquiry-form" id="quoteForm">
           <div class="field-group two">
             <label>
-              Full name
-              <input name="name" autocomplete="name" required>
+              Name
+              <input name="name" autocomplete="name" pattern=".*\S.*" required>
             </label>
             <label>
               Phone
               <input name="phone" type="tel" autocomplete="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" required>
             </label>
           </div>
-          <label>
-            WhatsApp number
-            <input name="whatsappNumber" type="tel" autocomplete="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="Same as mobile if applicable">
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" autocomplete="email" required>
-          </label>
           <div class="field-group two">
             <label>
-              Pickup city / area
-              <input name="pickupCity" value="Jajpur" required>
+              Pickup location
+              <input name="pickupCity" placeholder="Jajpur Road or nearby area" pattern=".*\S.*" required>
             </label>
             <label>
-              Delivery city
-              <input name="deliveryCity" required>
+              Destination
+              <input name="deliveryCity" placeholder="Delivery city / area" pattern=".*\S.*" required>
             </label>
           </div>
-          <div class="field-group two">
-            <label>
-              Vehicle category
-              <select name="vehicleCategory" required>
-                <option value="">Select category</option>
-                <option>Hatchback</option>
-                <option>Sedan</option>
-                <option>SUV</option>
-                <option>MUV / MPV</option>
-                <option>Luxury / premium vehicle</option>
-                <option>Sports car</option>
-                <option>Electric vehicle</option>
-                <option>Two-wheeler</option>
-                <option>Commercial vehicle</option>
-                <option>Dealer or fleet vehicle</option>
-              </select>
-            </label>
-            <label>
-              Vehicle name / model
-              <input name="vehicleName" list="vehicleSuggestions" placeholder="Example: Honda City, Scorpio, Creta" required>
-            </label>
-          </div>
+          <label>
+            Car model
+            <input name="vehicleName" list="vehicleSuggestions" placeholder="Example: Honda City, Scorpio, Creta" pattern=".*\S.*" required>
+          </label>
           <datalist id="vehicleSuggestions">
             <option value="Honda City">
             <option value="Hyundai Creta">
@@ -133,26 +115,23 @@
             <option value="Toyota Innova">
             <option value="Tata Nexon EV">
           </datalist>
-          <div class="field-group two">
-            <label>
-              Preferred timing
-              <select name="timing" required>
-                <option value="">Select timing</option>
-                <option>As soon as possible</option>
-                <option>This week</option>
-                <option>This month</option>
-                <option>Planning ahead</option>
-              </select>
-            </label>
-            <label>
-              Pickup date
-              <input type="date" name="pickupDate">
-            </label>
-          </div>
-          <label>
-            Notes
-            <textarea name="message" rows="4" placeholder="Pickup landmark, route details, vehicle condition, or callback time">Jajpur district enquiry</textarea>
-          </label>
+          <details class="optional-quote-details">
+            <summary>Add email, moving date or notes (optional)</summary>
+            <div class="field-group">
+              <label>
+                Email (optional)
+                <input type="email" name="email" autocomplete="email">
+              </label>
+              <label>
+                Moving date (optional)
+                <input type="date" name="pickupDate">
+              </label>
+              <label>
+                Notes (optional)
+                <textarea name="message" rows="3" placeholder="Pickup landmark, vehicle condition, or callback time"></textarea>
+              </label>
+            </div>
+          </details>
           <input type="hidden" name="formType" value="Route Enquiry / Google Ads Landing Page Form">
           <input type="hidden" name="district" value="Jajpur">
           <input type="hidden" name="landingPage" value="jajpur">
@@ -166,11 +145,27 @@
           <input type="hidden" name="gclid">
           <input type="hidden" name="referrer">
           <input type="hidden" name="device">
-          <button class="button primary form-submit" type="submit">Submit Jajpur enquiry <span aria-hidden="true">-&gt;</span></button>
+          <button class="button primary form-submit" type="submit">Get a Car Transport Quote <span aria-hidden="true">-&gt;</span></button>
           <p class="form-note" id="formStatus" role="status" aria-live="polite">
             Submit your route details. Our team will contact you shortly.
           </p>
         </form>
+      </section>
+
+      <section class="section district-loading-proof" aria-labelledby="loading-proof-heading">
+        <figure>
+          <img src="../assets/car-loading-video-poster.webp" width="720" height="1280" loading="lazy" decoding="async" alt="A vehicle being loaded into a carrier, from our existing operations gallery">
+          <figcaption>Car loading from our operations gallery</figcaption>
+        </figure>
+        <div>
+          <p class="eyebrow">Loading and customer feedback</p>
+          <h2 id="loading-proof-heading">See our work and read customer reviews</h2>
+          <p>View the loading videos and customer feedback through our existing gallery and Google profile.</p>
+          <div class="hero-actions">
+            <a class="button secondary dark-text" href="../index.html#videos">View loading videos</a>
+            <a class="button primary" href="https://share.google/VhHj7JWrYszmdlzEJ" target="_blank" rel="noopener noreferrer">Read Google reviews</a>
+          </div>
+        </div>
       </section>
 
       <section class="section district-content">
@@ -192,7 +187,7 @@
           <article>
             <span class="service-icon">03</span>
             <h3>Vehicle category support</h3>
-            <p>Select hatchback, sedan, SUV, MUV, EV, two-wheeler, luxury, commercial, or fleet vehicle.</p>
+            <p>Share your model for hatchback, sedan, SUV, MUV, EV, two-wheeler, luxury, commercial, or fleet vehicle enquiries.</p>
           </article>
           <article>
             <span class="service-icon">04</span>
@@ -250,7 +245,7 @@
 
     <footer class="footer">
       <p>A TO Z Car Carriers</p>
-      <p><a href="tel:+919338888550">+91 9338888550</a> | <a href="mailto:manojgatibbi506.com">manojgatibbi506.com</a> | H.O. 211, Deulasahi, Tulsipur, Cuttack – 753008, Odisha, India</p>
+      <p><a href="tel:+919338888550">+91 9338888550</a> | <a href="mailto:info@atozpackersmovers.in">info@atozpackersmovers.in</a> | H.O. 211, Deulasahi, Tulsipur, Cuttack – 753008, Odisha, India</p>
     <p class="footer-disclosure"><strong>Legal Business Disclosure:</strong> A TO Z Car Carriers is the specialized car transportation division/trade name of A TO Z Packers &amp; Movers, a proprietorship of Manoj Kumar Swain. All services and invoices are provided under the registered GSTIN of A TO Z Packers &amp; Movers. <strong>GSTIN: 21BBTPS3094R2ZN</strong></p>
     </footer>
 
